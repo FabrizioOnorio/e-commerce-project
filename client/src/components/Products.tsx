@@ -7,10 +7,14 @@ interface ProductInterface {
 	quantity: string;
 	price: string;
 	picture: string;
-  id: string;
+	id: string;
 }
 
-const Products = () => {
+interface ProductsInterface {
+	userId: string;
+}
+
+const Products = ({ userId }: ProductsInterface) => {
 	const [products, setProducts] = useState([]);
 
 	useEffect(() => {
@@ -29,7 +33,7 @@ const Products = () => {
 			<h1 className="products--title">Products</h1>
 			<ul className="products--list">
 				{products.map((product: ProductInterface, index: number) => {
-					return <Product key={index} product={product} />;
+					return <Product key={index} product={product} userId={userId} />;
 				})}
 			</ul>
 		</div>

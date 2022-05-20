@@ -32,7 +32,18 @@ app.post("/api/products", async (req, res) => {
 		const results = await db.addProduct(product);
 		res.json(results);
 	} catch (err) {
-		console.log("error message is ", err.message);
+		console.log("error message is: ", err.message);
+	}
+});
+
+app.post("/api/chart", async (req, res) => {
+	try {
+		const userAndProductToAdd = await req.body;
+		console.log(userAndProductToAdd);
+		const results = await db.createAddToChart(userAndProductToAdd);
+		res.json(results);
+	} catch (err) {
+		console.log("error message is: ", err.message);
 	}
 });
 

@@ -55,7 +55,7 @@ function App() {
 					path="/products"
 					element={
 						<AuthRoute>
-							<Products />
+							<Products userId={userId} />
 						</AuthRoute>
 					}
 				/>

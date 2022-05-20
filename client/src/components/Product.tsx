@@ -6,27 +6,33 @@ interface ProductInterface {
 	quantity: string;
 	price: string;
 	picture: string;
-  id: string;
+	id: string;
 }
 
 interface ProductPropsInterface {
 	product: ProductInterface;
+	userId: string;
 }
 
-const Product = ({ product }: ProductPropsInterface) => {
+const Product = ({ product, userId }: ProductPropsInterface) => {
 	const handleSubmit = () => {
-    		// const requestOptions = {
-				// 	method: "POST",
-				// 	body: JSON.stringify(newProduct),
-				// 	headers: { "content-type": "application/json" },
-				// };
-				// const address =
-				// 	process.env.NODE_ENV === "development" ? "http://localhost:3030" : "";
-				// fetch(`${address}/api/products`, requestOptions).then((response) =>
-				// 	response.json()
-				// );
-    console.log(product.id)
-  };
+		const productToAdd = { userId, product };
+
+		const requestOptions = {
+			method: "POST",
+			body: JSON.stringify(productToAdd),
+			headers: { "content-type": "application/json" },
+		};
+		const address =
+			process.env.NODE_ENV === "development" ? "http://localhost:3030" : "";
+		try {
+			fetch(`${address}/api/chart`, requestOptions).then((response) =>
+				response.json()
+			);
+		} catch (err: any) {
+			console.log(err.message);
+		}
+	};
 
 	return (
 		<article className="productCard">
