@@ -32,5 +32,17 @@ const addProduct = async (product) => {
 	return result;
 };
 
+const createAddToChart = (product) => {
+	const client = new MongoClient(uri, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+	});
+
+	await client.connect();
+  const database = client.db("e-commerce-project");
+  const collection = database.collection("shopping-charts");
+  const result = await collection.insertOne(product);
+}
+
 module.exports.addProduct = addProduct;
 module.exports.getProducts = getProducts;
